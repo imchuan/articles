@@ -1,38 +1,57 @@
 ---
-title: Hello World
+title: Groovy笔记-数值和表达式
+date: 2016-10-28 10:48:45
+categories: Groovy
+tags: Groovy笔记
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+Groovy是一门面向对象的语言，也就是说，Groovy中每一个事物最终都会被当作某些类的一个实例对象。比如：整型1234实际上是Integer类的一个实例，那么就可以调用Integer类的方法，进行数值运算。
 
-### Create a new post
+<!-- more -->
 
-``` bash
-$ hexo new "My New Post"
-```
+# 数值
+Groovy支持整数和浮点数，整型值没有分数部分。
+整数可能是正数、负数或者零，如 123、-11和0都是常见的整数，它们都是Integer类的实例。
+浮点数是包含十进制小数部分的十进制数，如 0.23，-0.23，它们都是BigDecimal类的实例。**请注意，浮点数必须避免以小数点开始，避免出现混淆。**
 
-More info: [Writing](https://hexo.io/docs/writing.html)
+# 表达式
+**表达式（expression）通常用来描述某些计算行为，由运算符和操作数组成。**
+运算符包括常见的算术运算符、比较运算符、位运算符，以及其他各种类型的运算符
 
-### Run server
+# 运算符优先级
+优先级顺序：乘法->除法->取模->加法->减法，可以使用小括号**()**改变优先级
 
-``` bash
-$ hexo server
-```
+# 赋值
+声明一个变量
 
-More info: [Server](https://hexo.io/docs/server.html)
+	def count
+    
+赋值运算符**(=)** 的作用是，先求赋值表达式右边的值，然后将计算的结果赋给它左边的变量，如：
 
-### Generate static files
+	totalMinutes = 60 * hours + minutes
+    count = count + 1
 
-``` bash
-$ hexo generate
-```
+# 自增和自减运算符
+Groovy也支持两个一元运算符，以实现对某个数字变量的加一或减一的操作。
 
-More info: [Generating](https://hexo.io/docs/generating.html)
+**前置自增/自减：** 把自增或自减运算符放到变量的前面，表示对变量先执行加一或减一运算，然后将该变量的新值用于其所在的表达式。
 
-### Deploy to remote sites
+**后置自增/自减：** 把自增或自减运算符放到变量的后面，表示表达式使用该变量执行完该表达式后，再对该变量执行加一或减一运算。
 
-``` bash
-$ hexo deploy
-```
+	def x = 10
+    def y = x++		// x的值为11，y的值为10
+    
+    def x = 10
+    def y = ++x		// x的值为11，y的值为11
+    
+# 对象引用
+在赋值语句`age = 10`中，使用Groovy动态类型的功能，age变量所引用的值的类型是在其运行过程中，而不是在编译时决定的，执行此赋值语句时会创建一个`Integer`对象，并将10赋值给这个变量。
 
-More info: [Deployment](https://hexo.io/docs/deployment.html)
+**变量和对象之间的关联关系被称为引用**，变量引用了该对象所使用的内存部分，我们来看几组示例：
+	
+    def age = 10
+    def number = age
+    // number 和 age 指向的是同一个对象 10
+    
+	age = 30 // 此时number还是指向10，age指向30，两者指向的是不同的对象
+    number = 40 // number指向40，age指向30，此时对象10 将会被垃圾回收器回收
