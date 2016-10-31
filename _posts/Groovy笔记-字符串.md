@@ -9,23 +9,26 @@ tags: Groovy笔记
 
 # 字符串字面值
 字符串示例
-字面值				  | 描述
---------------------|-----------------
-''					| 空字符串
-'He said "Hello"!'  | 单引号（嵌套双引号）
-"He said 'Hello'!"  | 双引号（嵌套单引号）
-""" text text """   | 三引号
+
+|字面值		      | 描述            |
+|--------------------|----------------|
+|''					| 空字符串         |
+|'He said "Hello"!' | 单引号（嵌套双引号）|
+|"He said 'Hello'!" | 双引号（嵌套单引号）|
+|""" text text """  | 三引号            |
 
 **使用单引号封装的字符串的值就是字符序列本身，而另外两种形式的字符串的值，可以被解释**
 **任何包含在解释型字符串中的`${expression}`都将被求值，其结果是字符串的一部分**
 例：
+
 	def age = 25
     println('My age is ${age}')
     println("My age is ${age}")
     println("""My age is ${age}""")
     println("My age is \${age}")
-    
+
 输出结果：
+
 	My age is ${age} // 由于使用了单引号${age}没有被解析
 	My age is 25
 	My age is 25
@@ -38,6 +41,7 @@ tags: Groovy笔记
 字符串索引位置从0开始，止于该字符串长度减1。
 负数索引，其位置是从字符串的结尾开始往前计算。
 例：
+
 	def str = "Hello Groovy"
     str[0] // H; 获取第0个字符
     str[-2] // v; 获取倒数第二个字符
