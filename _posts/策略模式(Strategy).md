@@ -1,5 +1,5 @@
 ---
-title: 设计模式-策略模式
+title: 策略模式(Strategy)
 date: 2016-11-2 20:36:50
 categories: 设计模式
 tags: 设计模式
